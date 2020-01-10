@@ -36,20 +36,6 @@ fun Application.module(testing: Boolean = false) {
                 }
             }
         }
-
-        get("/styles.css") {
-            call.respondCss {
-                body {
-                    backgroundColor = Color.red
-                }
-                p {
-                    fontSize = 2.em
-                }
-                rule("p.myclass") {
-                    color = Color.blue
-                }
-            }
-        }
     }
 }
 
