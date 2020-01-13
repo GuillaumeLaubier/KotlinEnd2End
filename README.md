@@ -7,8 +7,8 @@ Web API of the UltraQuizz application using Ktor.
 ## UltraQuizzCore (To be done)
 Core application in Kotlin to be used in Android Kotlin application and iOS Swift application.
 
-## UltraQuizzAndroid
+## UltraQuizzAndroid (To be done)
 Android Kotlin application of your favorite quizz game **UltraQuizz**.
 
-## UltraQuizziOS
+## UltraQuizziOS (To be done)
 iOS Swift application of your favorite quizz game **UltraQuizz**.
