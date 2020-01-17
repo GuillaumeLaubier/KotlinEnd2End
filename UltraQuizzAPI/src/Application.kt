@@ -12,6 +12,7 @@ import io.ktor.features.*
 import io.ktor.client.features.auth.basic.*
 import java.io.FileReader
 import java.text.DateFormat
+import kotlin.random.Random
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -49,15 +50,23 @@ fun Application.module(testing: Boolean = false) {
 
     routing {
         get("/") {
+            println("Route / called.")
             call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
         }
 
         get("/json/gson") {
+            println("Route /json/gson called.")
             call.respond(mapOf("hello" to "world"))
         }
 
         get("/json/questions") {
+            println("Route /json/questions called.")
             call.respond(questionsList)
+        }
+
+        get("/json/questions/random") {
+            println("Route /json/questions/random called.")
+            call.respond(questionsList[Random.nextInt(0, questionsList.size)])
         }
     }
 }

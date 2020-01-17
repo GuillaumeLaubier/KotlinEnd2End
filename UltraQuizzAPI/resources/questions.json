@@ -23,5 +23,58 @@
     "otherChoices": [
       "no"
     ]
+  },
+  {
+    "sentence": "What this quizz is made with?",
+    "answer": "Kotlin",
+    "otherChoices": [
+      "Java",
+      "Swift",
+      "Javascript ptdr"
+    ]
+  },
+  {
+    "sentence": "Select the right game name",
+    "answer": "CyberPunk 2077",
+    "otherChoices": [
+      "CyberPunk 3077",
+      "CiberPunk 2077",
+      "SteamPunk 2077"
+    ]
+  },
+  {
+    "sentence": "Kyan Khojandi did not work on",
+    "answer": "SAV des emissions",
+    "otherChoices": [
+      "Bloqués",
+      "Bref",
+      "Serge le mytho"
+    ]
+  },
+  {
+    "sentence": "Winter is...",
+    "answer": "Coming",
+    "otherChoices": [
+      "Freezing",
+      "Loading"
+    ]
+  },
+  {
+    "sentence": "What is the name of the playable character of Dishonored?",
+    "answer": "Corvo",
+    "otherChoices": [
+      "Delilah",
+      "The Outsider",
+      "Jessamine"
+    ]
+  },
+  {
+    "sentence": "What do Peugeot make?",
+    "answer": "Cars",
+    "otherChoices": [
+      "Planes",
+      "Trucks",
+      "Rollers"
+    ]
   }
 ]
