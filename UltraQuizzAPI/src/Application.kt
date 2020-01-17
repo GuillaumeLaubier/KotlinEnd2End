@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.kotlinend2end.ultraquizzapi.model.GameScore
 import com.kotlinend2end.ultraquizzapi.model.Question
+import com.kotlinend2end.ultraquizzapi.model.ScoreBoard
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -26,6 +27,8 @@ private val questionsList: List<Question> by lazy {
     val questions: List<Question> = Gson().fromJson(FileReader("resources/questions.json"), listQuestionType)
     questions
 }
+
+private val scoreboard = ScoreBoard()
 
 @kotlin.jvm.JvmOverloads
 fun Application.module(testing: Boolean = false) {
@@ -79,8 +82,8 @@ fun Application.module(testing: Boolean = false) {
         /// Actual routes below
 
         get("/start") {
-            println("Route GET /start called.")
             // Select and return 5 random questions
+            println("Route GET /start called.")
             call.respond(questionsList.shuffled().subList(0, 5))
         }
 
@@ -95,14 +98,27 @@ fun Application.module(testing: Boolean = false) {
 
 
             // put fix score for testing
-            val newScore = GameScore(Date(), "Guiguilabrute", 5)
-            val scoreJson = Gson().toJson(newScore)
+            val names: List<String> = listOf("Guigui", "lucroute", "emile", "marloute")
+            val newScore = GameScore(Date(), names[Random.nextInt(0, 4)], Random.nextInt(0, 5))
 
-            val scoreFile = File("resources/scores.json")
-            scoreFile.writeText(scoreJson)
+            scoreboard.submitScore(newScore)
 
             call.respond(HttpStatusCode.Accepted, "Score is stored")
         }
+
+        get("/scoreboard") {
+            println("Route GET /scoreboard called.")
+            // return actual scoreboard
+            call.respond(scoreboard.getBoard())
+        }
+
+        get("/leaderboard") {
+            println("Route GET /leaderboard called.")
+            // Return 10 bests score
+            call.respond(scoreboard.getLeaderBoard())
+        }
+
+
     }
 }
 
