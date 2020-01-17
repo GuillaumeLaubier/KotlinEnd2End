@@ -1,17 +1,27 @@
 [
   {
-    "question": "What does 1 + 1 equal to?",
-    "response": "2",
-    "choices": ["11", "1", "0"]
+    "sentence": "What does 1 + 1 equal to?",
+    "answer": "2",
+    "otherChoices": [
+      "11",
+      "1",
+      "0"
+    ]
   },
   {
-    "question": "French motto says: \"Des pâtes oui, mais des...\"",
-    "response": "Panzani",
-    "choices": ["Lustucru", "Marque repère", "Charal"]
+    "sentence": "French motto says: \"Des pâtes oui, mais des...\"",
+    "answer": "Panzani",
+    "otherChoices": [
+      "Lustucru",
+      "Marque repère",
+      "Charal"
+    ]
   },
   {
-    "question": "Do you like this quizz?",
-    "response": "yes",
-    "choices": ["no"]
+    "sentence": "Do you like this quizz?",
+    "answer": "yes",
+    "otherChoices": [
+      "no"
+    ]
   }
 ]
