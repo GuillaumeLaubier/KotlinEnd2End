@@ -1,10 +1,31 @@
 # UltraQuizzAPI
 Kotlin web API using Ktor for your favorite Quizz app.
 
-## TODO
-- [ ] Create DB to store questions and scoreboard.
-- [ ] Find a way to setup the DB with a bunch of question stored in a JSON file.
-- [ ] Create endpoint to start a quizz session. Something like `/start?name=<NAME>`.
-- [ ] Create endpoint to retrieve all score stored. Something like `/scoreboard`.
-
 ## API Endpoints
+
+#### GET /start
+Returns 5 random questions. The questions are chosen from a JSON file containing all possible questions for the quizz. This JSON file is available at `resources/questions.json`.
+
+#### POST /score
+Submit a new score. The body must be a JSON as:
+```
+{
+  "gamerName": "NameA",
+  "score": 4
+}
+```
+If the score is valid, it is stored in the JSON file `resources/scores.json`. (This part is not done yet)
+
+#### GET /scoreboard
+Returns a JSON containing all submitted scores.
+
+### GET /leaderboard
+Returns a JSON containing 10 bests scores, ordering by `score` then `date`.
+
+### Debug
+
+#### POST /randomscore
+Create and submit a random score. Usefull to fill up the `score.json` file.
+
+#### GET /json/questions
+Returns a JSON containing all the possible question.
