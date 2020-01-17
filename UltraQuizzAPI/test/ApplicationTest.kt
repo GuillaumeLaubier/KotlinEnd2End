@@ -5,13 +5,13 @@ import io.ktor.response.*
 import io.ktor.request.*
 import io.ktor.routing.*
 import io.ktor.http.*
-import io.ktor.html.*
-import kotlinx.html.*
-import com.fasterxml.jackson.databind.*
-import io.ktor.jackson.*
+import io.ktor.auth.*
+import io.ktor.gson.*
 import io.ktor.features.*
 import io.ktor.client.*
 import io.ktor.client.engine.apache.*
+import io.ktor.client.features.auth.basic.*
+import io.ktor.client.features.logging.*
 import kotlin.test.*
 import io.ktor.server.testing.*
 
