@@ -1,0 +1,17 @@
+[
+  {
+    "question": "What does 1 + 1 equal to?",
+    "response": "2",
+    "choices": ["11", "1", "0"]
+  },
+  {
+    "question": "French motto says: \"Des pâtes oui, mais des...\"",
+    "response": "Panzani",
+    "choices": ["Lustucru", "Marque repère", "Charal"]
+  },
+  {
+    "question": "Do you like this quizz?",
+    "response": "yes",
+    "choices": ["no"]
+  }
+]
