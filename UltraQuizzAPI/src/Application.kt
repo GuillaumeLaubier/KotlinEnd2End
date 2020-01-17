@@ -11,7 +11,8 @@ import io.ktor.routing.*
 import io.ktor.http.*
 import io.ktor.gson.*
 import io.ktor.features.*
-import io.ktor.client.features.auth.basic.*
+import io.ktor.request.receive
+import io.ktor.request.receiveText
 import java.io.File
 import java.io.FileReader
 import java.io.FileWriter
@@ -64,19 +65,28 @@ fun Application.module(testing: Boolean = false) {
             call.respondText("HELLO WORLD!", contentType = ContentType.Text.Plain)
         }
 
-        get("/json/gson") {
-            println("Route GET /json/gson called.")
-            call.respond(mapOf("hello" to "world"))
-        }
-
         get("/json/questions") {
             println("Route GET /json/questions called.")
             call.respond(questionsList)
         }
 
-        get("/json/questions/random") {
-            println("Route GET /json/questions/random called.")
-            call.respond(questionsList[Random.nextInt(0, questionsList.size)])
+        post("/randomscore") {
+            println("Route POST /randomscore called.")
+
+            // response json formatted:
+            // {
+            //   "name": <gamer_name>,
+            //   "score" : <score_value>
+            // }
+
+
+            // put fix score for testing
+            val names: List<String> = listOf("Guigui", "lucroute", "emile", "marloute")
+            val newScore = GameScore(names[Random.nextInt(0, 4)], Random.nextInt(0, 6))
+
+            scoreboard.submitScore(newScore)
+
+            call.respond(HttpStatusCode.Accepted, "Score is stored")
         }
 
         /// Actual routes below
@@ -90,20 +100,13 @@ fun Application.module(testing: Boolean = false) {
         post("/score") {
             println("Route POST /score called.")
 
-            // response json formatted:
-            // {
-            //   "name": <gamer_name>,
-            //   "score" : <score_value>
-            // }
+            call.receiveText().let {
+                val gameScore = Gson().fromJson(it, GameScore::class.java)
 
+                scoreboard.submitScore(gameScore)
 
-            // put fix score for testing
-            val names: List<String> = listOf("Guigui", "lucroute", "emile", "marloute")
-            val newScore = GameScore(Date(), names[Random.nextInt(0, 4)], Random.nextInt(0, 5))
-
-            scoreboard.submitScore(newScore)
-
-            call.respond(HttpStatusCode.Accepted, "Score is stored")
+                call.respond(HttpStatusCode.Accepted, "Score of ${gameScore.score} is stored for ${gameScore.gamerName}.")
+            }
         }
 
         get("/scoreboard") {
@@ -117,8 +120,6 @@ fun Application.module(testing: Boolean = false) {
             // Return 10 bests score
             call.respond(scoreboard.getLeaderBoard())
         }
-
-
     }
 }
 
