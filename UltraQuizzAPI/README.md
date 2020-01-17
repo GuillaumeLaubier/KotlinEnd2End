@@ -19,7 +19,7 @@ If the score is valid, it is stored in the JSON file `resources/scores.json`. (T
 #### GET /scoreboard
 Returns a JSON containing all submitted scores.
 
-### GET /leaderboard
+#### GET /leaderboard
 Returns a JSON containing 10 bests scores, ordering by `score` then `date`.
 
 ### Debug
