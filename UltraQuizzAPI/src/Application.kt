@@ -73,20 +73,15 @@ fun Application.module(testing: Boolean = false) {
         post("/randomscore") {
             println("Route POST /randomscore called.")
 
-            // response json formatted:
-            // {
-            //   "name": <gamer_name>,
-            //   "score" : <score_value>
-            // }
-
-
-            // put fix score for testing
+            val numberOfRandomScore = call.parameters["number"]?.run { toInt() } ?: run { 1 }
             val names: List<String> = listOf("Guigui", "lucroute", "emile", "marloute")
-            val newScore = GameScore(names[Random.nextInt(0, 4)], Random.nextInt(0, 6))
 
-            scoreboard.submitScore(newScore)
+            for(i in (1..numberOfRandomScore)) {
+                val newScore = GameScore(names[Random.nextInt(0, 4)], Random.nextInt(0, 101))
+                scoreboard.submitScore(newScore)
+            }
 
-            call.respond(HttpStatusCode.Accepted, "Score is stored")
+            call.respond(HttpStatusCode.Accepted, "$numberOfRandomScore Scores are stored")
         }
 
         /// Actual routes below
@@ -99,6 +94,12 @@ fun Application.module(testing: Boolean = false) {
 
         post("/score") {
             println("Route POST /score called.")
+
+            // response json formatted:
+            // {
+            //   "name": <gamer_name>,
+            //   "score" : <score_value>
+            // }
 
             call.receiveText().let {
                 val gameScore = Gson().fromJson(it, GameScore::class.java)
