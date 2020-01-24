@@ -14,10 +14,10 @@ Submit a new score. The body must be a JSON as:
   "score": 4
 }
 ```
-If the score is valid, it is stored in the JSON file `resources/scores.json`. (This part is not done yet)
+If the score is valid, it is stored in the JSON file `resources/scores.json`.
 
 #### GET /scoreboard
-Returns a JSON containing all submitted scores.
+Returns a JSON containing all submitted scores ordering descending by `date`.
 
 #### GET /leaderboard
 Returns a JSON containing 10 bests scores, ordering by `score` then `date`.
