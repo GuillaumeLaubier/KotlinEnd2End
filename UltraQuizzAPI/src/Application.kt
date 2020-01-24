@@ -73,7 +73,7 @@ fun Application.module(testing: Boolean = false) {
         post("/randomscore") {
             println("Route POST /randomscore called.")
 
-            val numberOfRandomScore = call.parameters["number"]?.run { toInt() } ?: run { 1 }
+            val numberOfRandomScore = call.parameters["number"]?.toInt() ?: 1
             val names: List<String> = listOf("Guigui", "lucroute", "emile", "marloute")
 
             for(i in (1..numberOfRandomScore)) {
