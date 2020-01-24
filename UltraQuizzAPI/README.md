@@ -26,6 +26,7 @@ Returns a JSON containing 10 bests scores, ordering by `score` then `date`.
 
 #### POST /randomscore
 Create and submit a random score. Usefull to fill up the `score.json` file.
+Add the parameter `number` (int) to create multiples random scores at once.
 
 #### GET /json/questions
 Returns a JSON containing all the possible question.
