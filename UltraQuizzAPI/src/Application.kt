@@ -72,7 +72,7 @@ fun Application.module(testing: Boolean = false) {
             val numberOfRandomScore = call.parameters["number"]?.toInt() ?: 1
             val names: List<String> = listOf("Guigui", "lucroute", "emile", "marloute")
 
-            for(i in (1..numberOfRandomScore)) {
+            for (i in (1..numberOfRandomScore)) {
                 val newScore = GameScore(names[Random.nextInt(0, 4)], Random.nextInt(0, 101))
                 scoreboard.submitScore(newScore)
             }
@@ -100,9 +100,14 @@ fun Application.module(testing: Boolean = false) {
             call.receiveText().let {
                 val gameScore = Gson().fromJson(it, GameScore::class.java)
 
-                scoreboard.submitScore(gameScore)
-
-                call.respond(HttpStatusCode.Accepted, "Score of ${gameScore.score} is stored for ${gameScore.gamerName}.")
+                if (scoreboard.submitScore(gameScore)) {
+                    call.respond(
+                        HttpStatusCode.Accepted,
+                        "Score of ${gameScore.score} is stored for ${gameScore.gamerName}."
+                    )
+                } else {
+                    call.respond(HttpStatusCode.NotAcceptable, "Score is not valid.")
+                }
             }
         }
 

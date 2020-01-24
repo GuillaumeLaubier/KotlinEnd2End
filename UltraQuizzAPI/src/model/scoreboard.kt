@@ -15,10 +15,21 @@ class ScoreBoard {
         scores
     }
 
-    fun submitScore(gameScore: GameScore) {
-        scoreList.add(gameScore)
+    /**
+     * Submit a score only if the given GameScore is valid. Return true if the submission
+     * is done, false otherwise.
+     */
+    fun submitScore(gameScore: GameScore) : Boolean {
+        // Check validity of GameScore
+        if (gameScore.score < 0 || gameScore.score > 100) {
+            // GameScore is valid only if the score is between 0 and 100.
+            return false
+        }
 
+        scoreList.add(gameScore)
         scoreJsonFile.writeText(Gson().toJson(scoreList))
+
+        return true
     }
 
     fun getBoard(): List<GameScore> = scoreList.sortedByDescending { it.date }
