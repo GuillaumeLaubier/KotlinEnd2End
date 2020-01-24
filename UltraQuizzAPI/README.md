@@ -14,7 +14,7 @@ Submit a new score. The body must be a JSON as:
   "score": 4
 }
 ```
-If the score is valid, it is stored in the JSON file `resources/scores.json`.
+If the score is valid, it is stored in the JSON file `resources/scores.json`. To be valid the score must be between `0` and `100`. It represents the pourcentage of good answers.
 
 #### GET /scoreboard
 Returns a JSON containing all submitted scores ordering descending by `date`.
