@@ -2,6 +2,4 @@ package com.kotlinend2end.ultraquizzapi.model
 
 import java.util.*
 
-data class GameScore(val gamerName: String, val score: Int) {
-    val date = Date()
-}
+data class GameScore(val gamerName: String = "No Name", val score: Int = 0, val date: Date = Date())

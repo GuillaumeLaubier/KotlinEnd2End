@@ -21,7 +21,13 @@ class ScoreBoard {
         scoreJsonFile.writeText(Gson().toJson(scoreList))
     }
 
-    fun getBoard(): List<GameScore> = scoreList
+    fun getBoard(): List<GameScore> = scoreList.sortedByDescending { it.date }
 
-    fun getLeaderBoard(): List<GameScore> = scoreList.sortedByDescending { it.score }.subList(0, 10)
+    fun getLeaderBoard(): List<GameScore> = scoreList.sortedByDescending { it.score }.run {
+        if (size > 9) {
+            subList(0, 10)
+        } else {
+            subList(0, size)
+        }
+    }
 }

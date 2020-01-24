@@ -11,13 +11,9 @@ import io.ktor.routing.*
 import io.ktor.http.*
 import io.ktor.gson.*
 import io.ktor.features.*
-import io.ktor.request.receive
 import io.ktor.request.receiveText
-import java.io.File
 import java.io.FileReader
-import java.io.FileWriter
 import java.text.DateFormat
-import java.util.*
 import kotlin.random.Random
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -97,7 +93,7 @@ fun Application.module(testing: Boolean = false) {
 
             // response json formatted:
             // {
-            //   "name": <gamer_name>,
+            //   "gamerName": <gamer_name>,
             //   "score" : <score_value>
             // }
 
